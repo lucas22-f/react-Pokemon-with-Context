@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap'
 import PokemonContext from '../PokemonContext'
 import PokemonRow from "./PokemonRow"
 function PokemonTable() {
-    const{data,setSelectedPokemon,filter} = useContext(PokemonContext)
+    const{ state:{data,filter} } = useContext(PokemonContext) // traigo el estado desestructurado 
   return (
    
     <Table width="100%">
