@@ -1,9 +1,13 @@
-import React, { useContext } from 'react'
+//import React, { useContext } from 'react'
 import {Card,Button} from "react-bootstrap"
-import PokemonContext from '../PokemonContext'
+//import PokemonContext from '../PokemonContext'
+import {useDispatch ,useSelector} from "react-redux";
+import { setSelectedPokemon } from "../redux/pokemonSlice";
 
 function PokemonDetail() {
-  const { state : {selectedPokemon} , dispatch } = useContext(PokemonContext)
+  //const { state : {selectedPokemon} , dispatch } = useContext(PokemonContext)
+  const dispatch = useDispatch()
+  const selectedPokemon = useSelector((state)=> state.pokemon.setSelectedPokemon);
   return selectedPokemon && (
     <Card className='m-5 '>
      
@@ -26,7 +30,7 @@ function PokemonDetail() {
         </table>
         
         </Card.Body>
-        <Button onClick={ () => dispatch({type:"set_selected_Pokemon",payload:null}) } > Exit </Button>
+        <Button onClick={ () => dispatch(setSelectedPokemon(null)) } > Exit </Button>
         
     </Card>
   )

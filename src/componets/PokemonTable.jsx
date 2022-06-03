@@ -1,9 +1,19 @@
-import React, { useContext } from 'react'
+import React, {useEffect } from 'react'
 import { Table } from 'react-bootstrap'
-import PokemonContext from '../PokemonContext'
+import { useSelector,useDispatch } from 'react-redux'
+import { setData } from '../redux/pokemonSlice'
+//import PokemonContext from '../PokemonContext'
 import PokemonRow from "./PokemonRow"
 function PokemonTable() {
-    const{ state:{data,filter} } = useContext(PokemonContext) // traigo el estado desestructurado 
+    //const{ state:{data,filter} } = useContext(PokemonContext) // traigo el estado desestructurado 
+    const{data,filter} = useSelector((state)=> state.pokemon); // con REDUX JS 
+    const dispatch = useDispatch();
+    useEffect(() => {
+      fetch("http://localhost:3000/pokemon.json")
+        .then(res => res.json())
+        .then(data => dispatch(setData(data)))
+        
+    }, [])
   return (
    
     <Table width="100%">
